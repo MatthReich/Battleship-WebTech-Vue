@@ -45,14 +45,16 @@ export default new Vuex.Store({
     },
     SET_GAME_VALUES(state, object) {
       console.log(object);
-      state.gameValues.grid1 = object;
-      state.gameValues.grid2 = object;
-      state.gameValues.shipSetting1 = object;
-      state.gameValues.shipSetting2 = object;
-      state.gameValues.gameState = object;
-      state.gameValues.playerState = object;
-      state.gameValues.player1 = "test_124";
-      state.gameValues.player2 = object;
+      console.log(state.gameValues);
+      state.gameValues.grid1 = object[0].grid1.cells;
+      state.gameValues.grid2 = object[1].grid2.cells;
+      state.gameValues.shipSetting1 = object[2];
+      state.gameValues.shipSetting2 = object[2];
+      state.gameValues.gameState = object[3].gameState;
+      state.gameValues.playerState = object[4].playerState;
+      state.gameValues.player1 = object[5].players.player1;
+      state.gameValues.player2 = object[5].players.player2;
+      console.log(state.gameValues);
     },
     SENDING_MESSAGE(state, message) {
       console.log("message received getter: " + message);
@@ -62,7 +64,7 @@ export default new Vuex.Store({
   actions: {
     fetchData(context) {
       context.commit("SET_LOADING_STATUS", "loading");
-      axios.get("http://localhost:9000/about").then(response => {
+      axios.get("http://localhost:9000/json").then(response => {
         context.commit("SET_LOADING_STATUS", "notLoading");
         context.commit("SET_GAME_VALUES", response.data);
       });

@@ -11,7 +11,7 @@
           v-on:click="sendMessage((row-1) + ' ' + (col-1) + ' test test')"
           v-bind:text="true"
         >
-          {{ getPlayer1() }}
+          {{ getGrid1(row-1 + '' + col-1) }}
         </v-btn>
       </v-col>
     </v-row>
@@ -22,6 +22,9 @@
 export default {
   name: "gridmodel",
   methods: {
+    getGrid1(value) {
+      return this.$store.getters.getGrid1[value].valueY;
+    },
     getPlayer1() {
       return this.$store.getters.getPlayer1;
     },
