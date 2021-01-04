@@ -44,17 +44,21 @@ export default new Vuex.Store({
       state.loadingStatus = status;
     },
     SET_GAME_VALUES(state, object) {
-      console.log(object);
-      console.log(state.gameValues);
-      state.gameValues.grid1 = object[0].grid1.cells;
-      state.gameValues.grid2 = object[1].grid2.cells;
+      const grid_01 = new Array(100);
+      const grid_02 = new Array(100);
+      for (var i = 0; i < 100; i++) {
+        grid_01[i] = object[0].grid1.cells[i].valueY;
+        grid_02[i] = object[1].grid2.cells[i].valueY;
+      }
+      state.gameValues.grid1 = grid_01;
+      state.gameValues.grid2 = grid_02;
       state.gameValues.shipSetting1 = object[2];
       state.gameValues.shipSetting2 = object[2];
       state.gameValues.gameState = object[3].gameState;
       state.gameValues.playerState = object[4].playerState;
       state.gameValues.player1 = object[5].players.player1;
       state.gameValues.player2 = object[5].players.player2;
-      console.log(state.gameValues);
+      console.log("fetch successful");
     },
     SENDING_MESSAGE(state, message) {
       console.log("message received getter: " + message);

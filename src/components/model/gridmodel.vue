@@ -8,10 +8,9 @@
           tile
           :key="(row - 1).toString() + (col - 1).toString()"
           :color="col.color"
-          v-on:click="sendMessage((row-1) + ' ' + (col-1) + ' test test')"
-          v-bind:text="true"
+          v-on:click="sendMessage((row - 1) + ' ' + (col - 1) + ' test test')"
         >
-          {{ getGrid1(row-1 + '' + col-1) }}
+          {{ getGrid1((row - 1) + '' + (col - 1)) }}
         </v-btn>
       </v-col>
     </v-row>
@@ -22,17 +21,24 @@
 export default {
   name: "gridmodel",
   methods: {
+    fetchData: function() {
+      console.log("fetching data");
+      this.$store.dispatch("fetchData");
+    },
     getGrid1(value) {
-      return this.$store.getters.getGrid1[value].valueY;
+      return this.$store.getters.getGrid1[Number(value)];
     },
     getPlayer1() {
       return this.$store.getters.getPlayer1;
     },
     sendMessage: function(message) {
       console.log("sending message: " + message);
-      this.$store.dispatch("fetchData");
       this.$store.commit("SENDING_MESSAGE", message);
+      this.fetchData();
     }
+  },
+  mounted() {
+    this.fetchData();
   }
 };
 </script>
