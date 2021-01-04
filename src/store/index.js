@@ -62,12 +62,10 @@ export default new Vuex.Store({
   actions: {
     fetchData(context) {
       context.commit("SET_LOADING_STATUS", "loading");
-      axios
-        .get("http://localhost:9000/about")
-        .then(response => {
-          context.commit("SET_LOADING_STATUS", "notLoading");
-          context.commit("SET_GAME_VALUES", response.data);
-        });
+      axios.get("http://localhost:9000/about").then(response => {
+        context.commit("SET_LOADING_STATUS", "notLoading");
+        context.commit("SET_GAME_VALUES", response.data);
+      });
     }
   },
   getters: {
