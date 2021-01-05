@@ -19,17 +19,32 @@
             Start a new game
           </v-card-title>
           <v-card-text>
-            <v-text-field label="Your Name" required></v-text-field>
+            <v-text-field v-model="yourplayername" label="Your Name" required></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
             <v-btn color="red darken-1" text @click="dialog = false">
               Cancel
             </v-btn>
-            <v-btn color="light-blue darken-1" text @click="submit">
+            <v-btn color="light-blue darken-1" text @click="submit()">
               Start
             </v-btn>
           </v-card-actions>
+        </v-card>
+      </v-dialog>
+      <v-dialog v-model="loading" persistent max-width="480" hide-overlay>
+        <v-card
+            color="light-blue"
+            dark
+        >
+          <v-card-text>
+            Waiting for second player
+            <v-progress-linear
+                indeterminate
+                color="white"
+                class="mb-0"
+            ></v-progress-linear>
+          </v-card-text>
         </v-card>
       </v-dialog>
 
@@ -44,12 +59,17 @@ export default {
   name: "landingpage",
   data() {
     return {
-      dialog: false
+      dialog: false,
+      loading:false,
+      yourplayername:""
     };
   },
   methods: {
     submit() {
-      this.$v.$touch();
+      this.loading = true
+      this.dialog = false
+      console.log(this.yourplayername)
+      this.$store.commit("SENDING_MESSAGE",this.yourplayername)
     }
   }
 };

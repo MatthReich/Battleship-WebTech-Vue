@@ -52,8 +52,8 @@ export default new Vuex.Store({
       }
       state.gameValues.grid1 = grid_01;
       state.gameValues.grid2 = grid_02;
-      state.gameValues.shipSetting1 = object[2];
-      state.gameValues.shipSetting2 = object[2];
+      state.gameValues.shipSetting1 = object[2].arraysInt.shipSetting;
+      state.gameValues.shipSetting2 = object[2].arraysInt.shipSetting2;
       state.gameValues.gameState = object[3].gameState;
       state.gameValues.playerState = object[4].playerState;
       state.gameValues.player1 = object[5].players.player1;
@@ -83,6 +83,18 @@ export default new Vuex.Store({
     },
     getPlayer1(state) {
       return state.gameValues.player1;
+    },
+    getPlayer2(state) {
+      return state.gameValues.player2;
+    },
+    getShip1(state){
+      return state.gameValues.shipSetting1;
+    },
+    getShip2(state){
+      return state.gameValues.shipSetting2;
+    },
+    getGameState(state){
+      return state.gameValues.gameState;
     }
   },
   modules: {}

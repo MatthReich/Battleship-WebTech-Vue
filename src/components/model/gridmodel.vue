@@ -7,8 +7,7 @@
           outlined
           tile
           :key="(row - 1).toString() + (col - 1).toString()"
-          :color="col.color"
-          v-on:click="sendMessage((row - 1) + ' ' + (col - 1) + ' test test')"
+          v-on:click="sendMessage((row - 1), (col - 1))"
         >
           {{ getGrid1((row - 1) + '' + (col - 1)) }}
         </v-btn>
@@ -20,21 +19,48 @@
 <script>
 export default {
   name: "gridmodel",
+  data() {
+    return {
+      col1:"",
+      row1:""
+    };
+  },
+  props:{
+    playerName:{
+      type: String,
+      require: true
+    }
+  },
   methods: {
     fetchData: function() {
       console.log("fetching data");
       this.$store.dispatch("fetchData");
     },
     getGrid1(value) {
-      return this.$store.getters.getGrid1[Number(value)];
+      if (this.playerName == "player1"){
+        return this.$store.getters.getGrid1[Number(value)];
+      } else {
+        return this.$store.getters.getGrid2[Number(value)];
+      }
+
     },
-    getPlayer1() {
-      return this.$store.getters.getPlayer1;
-    },
-    sendMessage: function(message) {
-      console.log("sending message: " + message);
-      this.$store.commit("SENDING_MESSAGE", message);
-      this.fetchData();
+    sendMessage: function(row, col) {
+      if (this.$store.getters.getGameState == "IDLE") {
+        console.log("sending message: " + row + " " + col);
+        this.$store.commit("SENDING_MESSAGE", row + " " + col + " test test");
+        this.fetchData();
+      } else {
+        if (this.row1 == ""){
+          this.row1 = row
+          this.col1 = col
+        } else {
+          console.log("sending message: " + this.row1 + " " + this.col1 + " " + row + " " + col);
+          this.$store.commit("SENDING_MESSAGE", this.row1 + " " + this.col1 + " " + row + " " + col);
+          this.row1 = ""
+          this.col1 = ""
+          this.fetchData();
+        }
+      }
     }
   },
   mounted() {
