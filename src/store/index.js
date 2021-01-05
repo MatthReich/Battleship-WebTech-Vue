@@ -87,14 +87,17 @@ export default new Vuex.Store({
     getPlayer2(state) {
       return state.gameValues.player2;
     },
-    getShip1(state){
+    getShip1(state) {
       return state.gameValues.shipSetting1;
     },
-    getShip2(state){
+    getShip2(state) {
       return state.gameValues.shipSetting2;
     },
-    getGameState(state){
+    getGameState(state) {
       return state.gameValues.gameState;
+    },
+    getPlayerState(state) {
+      return state.gameValues.playerState;
     }
   },
   modules: {}

@@ -19,7 +19,11 @@
             Start a new game
           </v-card-title>
           <v-card-text>
-            <v-text-field v-model="yourplayername" label="Your Name" required></v-text-field>
+            <v-text-field
+              v-model="yourplayername"
+              label="Your Name"
+              required
+            ></v-text-field>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -33,16 +37,13 @@
         </v-card>
       </v-dialog>
       <v-dialog v-model="loading" persistent max-width="480" hide-overlay>
-        <v-card
-            color="light-blue"
-            dark
-        >
+        <v-card color="light-blue" dark>
           <v-card-text>
             Waiting for second player
             <v-progress-linear
-                indeterminate
-                color="white"
-                class="mb-0"
+              indeterminate
+              color="white"
+              class="mb-0"
             ></v-progress-linear>
           </v-card-text>
         </v-card>
@@ -60,16 +61,16 @@ export default {
   data() {
     return {
       dialog: false,
-      loading:false,
-      yourplayername:""
+      loading: false,
+      yourplayername: ""
     };
   },
   methods: {
     submit() {
-      this.loading = true
-      this.dialog = false
-      console.log(this.yourplayername)
-      this.$store.commit("SENDING_MESSAGE",this.yourplayername)
+      this.loading = true;
+      this.dialog = false;
+      console.log(this.yourplayername);
+      this.$store.commit("SENDING_MESSAGE", this.yourplayername);
     }
   }
 };

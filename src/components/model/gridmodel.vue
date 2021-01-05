@@ -21,12 +21,12 @@ export default {
   name: "gridmodel",
   data() {
     return {
-      col1:"",
-      row1:""
+      col1: "",
+      row1: ""
     };
   },
-  props:{
-    playerName:{
+  props: {
+    playerName: {
       type: String,
       require: true
     }
@@ -37,27 +37,27 @@ export default {
       this.$store.dispatch("fetchData");
     },
     getGrid1(value) {
-      if (this.playerName == "player1"){
+      if (this.playerName === "player1") {
         return this.$store.getters.getGrid1[Number(value)];
       } else {
         return this.$store.getters.getGrid2[Number(value)];
       }
-
     },
     sendMessage: function(row, col) {
-      if (this.$store.getters.getGameState == "IDLE") {
+      if (this.$store.getters.getGameState === "IDLE") {
         console.log("sending message: " + row + " " + col);
         this.$store.commit("SENDING_MESSAGE", row + " " + col + " test test");
         this.fetchData();
       } else {
-        if (this.row1 == ""){
-          this.row1 = row
-          this.col1 = col
+        if (this.row1 === ""){
+          this.row1 = row;
+          this.col1 = col;
         } else {
-          console.log("sending message: " + this.row1 + " " + this.col1 + " " + row + " " + col);
-          this.$store.commit("SENDING_MESSAGE", this.row1 + " " + this.col1 + " " + row + " " + col);
-          this.row1 = ""
-          this.col1 = ""
+          const message = this.row1 + " " + this.col1 + " " + row + " " + col;
+          console.log("sending message: " + message);
+          this.$store.commit("SENDING_MESSAGE", message);
+          this.row1 = "";
+          this.col1 = "";
           this.fetchData();
         }
       }

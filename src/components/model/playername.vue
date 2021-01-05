@@ -1,30 +1,26 @@
 <template>
-  <h2 class="text-center">{{getPlayername()}}</h2>
+  <h2 class="text-center">{{ getPlayername() }}</h2>
 </template>
 
 <script>
 export default {
   name: "playername",
-  props:{
-    playerName:{
+  props: {
+    playerName: {
       type: String,
       require: true
     }
   },
   methods:{
-    getPlayername:function (){
-      if (this.playerName == "player1") {
+    getPlayername: function(){
+      if (this.playerName === "player1") {
         return this.$store.getters.getPlayer1;
-      } else if (this.playerName == "player2"){
+      } else if (this.playerName === "player2") {
         return this.$store.getters.getPlayer2;
       } else {
-        return "player"
+        return "player";
       }
     }
   }
-}
+};
 </script>
-
-<style scoped>
-
-</style>
