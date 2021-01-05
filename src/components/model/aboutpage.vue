@@ -50,7 +50,9 @@
     </div>
     <hr />
     <br />
-    <div class="video_div"></div>
+    <div>
+      <captionabout />
+    </div>
     <br />
     <hr />
     <br />
@@ -67,7 +69,8 @@
 
 <script>
 import battleshipMainGif from "@/components/media/battleshipmaingif";
+import captionabout from "@/components/media/captionabout";
 export default {
-  components: { battleshipMainGif }
+  components: { battleshipMainGif, captionabout }
 };
 </script>

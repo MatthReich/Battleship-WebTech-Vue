@@ -7,9 +7,9 @@
           outlined
           tile
           :key="(row - 1).toString() + (col - 1).toString()"
-          v-on:click="sendMessage((row - 1), (col - 1))"
+          v-on:click="sendMessage(row - 1, col - 1)"
         >
-          {{ getGrid1((row - 1) + '' + (col - 1)) }}
+          {{ getGrid((row - 1) + "" + (col - 1)) }}
         </v-btn>
       </v-col>
     </v-row>
@@ -36,11 +36,37 @@ export default {
       console.log("fetching data");
       this.$store.dispatch("fetchData");
     },
-    getGrid1(value) {
+    getGrid(value) {
       if (this.playerName === "player1") {
-        return this.$store.getters.getGrid1[Number(value)];
+        const vl = this.$store.getters.getGrid1[Number(value)];
+        if (vl === 0) {
+          return "~";
+        } else if (vl === 1) {
+          if (vl === 3 /* check if it is allowed to show setted ships */) {
+            return "~";
+          } else {
+            return "x";
+          }
+        } else if (vl === 2) {
+          return "x";
+        } else if (vl === 3) {
+          return "0";
+        }
       } else {
-        return this.$store.getters.getGrid2[Number(value)];
+        const vl = this.$store.getters.getGrid2[Number(value)];
+        if (vl === 0) {
+          return "~";
+        } else if (vl === 1) {
+          if (vl === 3 /* check if it is allowed to show setted ships */) {
+            return "~";
+          } else {
+            return "x";
+          }
+        } else if (vl === 2) {
+          return "x";
+        } else if (vl === 3) {
+          return "0";
+        }
       }
     },
     sendMessage: function(row, col) {
@@ -49,7 +75,7 @@ export default {
         this.$store.commit("SENDING_MESSAGE", row + " " + col + " test test");
         this.fetchData();
       } else {
-        if (this.row1 === ""){
+        if (this.row1 === "") {
           this.row1 = row;
           this.col1 = col;
         } else {

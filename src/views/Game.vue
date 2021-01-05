@@ -34,6 +34,8 @@
         You have won:<playername2 v-bind:player-name="player2" />
       </div>
       <br />
+      <borat />
+      <br />
     </div>
     <div v-else>
       <p class="text-center justify-center">
@@ -49,6 +51,7 @@ import gridmodel2 from "@/components/model/gridmodel";
 import playername1 from "@/components/model/playername";
 import playername2 from "@/components/model/playername";
 import shipsetting from "@/components/model/shipsetting";
+import borat from "@/components/media/borat";
 export default {
   name: "Game",
   components: {
@@ -56,7 +59,8 @@ export default {
     gridmodel2,
     playername1,
     playername2,
-    shipsetting
+    shipsetting,
+    borat
   },
   data() {
     return {
