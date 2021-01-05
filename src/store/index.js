@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
+import router from "@/router";
 
 Vue.use(Vuex);
 
@@ -29,15 +30,24 @@ sct.onerror = function(error) {
 sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
-  console.log(object);
-  this.$store.commit("SET_GAME_VALUES", object);
+  console.log(object)
+  if (object.event === "send-id"){
+    console.log("id: "+ object.object);
+    this.$store.state.playerid = object.object
+  } else if (object.event === "start-game"){
+    console.log("Start Game");
+    router.push('Game')
+  } else {
+    this.$store.commit("SET_GAME_VALUES", object);
+  }
 };
 
 export default new Vuex.Store({
   state: {
     loadingStatus: "notLoading",
     gameValues: game,
-    websocket: sct
+    websocket: sct,
+    playerid:""
   },
   mutations: {
     SET_LOADING_STATUS(state, status) {
