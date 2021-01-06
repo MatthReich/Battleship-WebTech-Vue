@@ -33,55 +33,47 @@ export default {
     }
   },
   methods: {
-    fetchData: function () {
+    fetchData: function() {
       console.log("fetching data");
       this.$store.dispatch("fetchData");
     },
-    setColor(value){
-      if (value === "~"){
-        return "blue"
-      }else if(value === "x"){
-        return "green"
-      }else if (value === "X"){
-        return "red"
-      }else {
-        return "lightblue"
+    setColor(value) {
+      if (value === "~") {
+        return "blue";
+      } else if (value === "x") {
+        return "green";
+      } else if (value === "X") {
+        return "red";
+      } else {
+        return "lightblue";
       }
     },
     getGrid(value) {
+      let vl;
+      let id;
+
       if (this.playerName === "player1") {
-        const vl = this.$store.getters.getGrid1[Number(value)];
-        if (vl === 0) {
-          return "~";
-        } else if (vl === 1) {
-          if (this.$store.getters.getPlayerState === "PLAYER_TWO") {
-            return "~";
-          } else {
-            return "x";
-          }
-        } else if (vl === 2) {
-          return "X";
-        } else if (vl === 3) {
-          return "0";
-        }
+        vl = this.$store.getters.getGrid1[Number(value)];
+        id = 1;
       } else {
-        const vl = this.$store.getters.getGrid2[Number(value)];
-        if (vl === 0) {
+        vl = this.$store.getters.getGrid2[Number(value)];
+        id = 2;
+      }
+      if (vl === 0) {
+        return "~";
+      } else if (vl === 1) {
+        if ((id === 1 && this.$store.getters.getPlayerState === "PLAYER_TWO") || (id === 2 && this.$store.getters.getPlayerState === "PLAYER_ONE")) {
           return "~";
-        } else if (vl === 1) {
-          if (this.$store.getters.getPlayerState === "PLAYER_ONE") {
-            return "~";
-          } else {
-            return "x";
-          }
-        } else if (vl === 2) {
+        } else {
           return "x";
-        } else if (vl === 3) {
-          return "0";
         }
+      } else if (vl === 2) {
+        return "X";
+      } else if (vl === 3) {
+        return "0";
       }
     },
-    sendMessage: function (row, col) {
+    sendMessage: function(row, col) {
       if (this.$store.getters.getGameState === "IDLE") {
         console.log("sending message: " + row + " " + col);
         this.$store.commit("SENDING_MESSAGE", row + " " + col + " test test");
