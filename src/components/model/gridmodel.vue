@@ -52,7 +52,7 @@ export default {
       let vl;
       let id;
 
-      if (this.$store.state.playerid === "player1") {
+      if (this.playerName === "player1") {
         vl = this.$store.getters.getGrid1[Number(value)];
         id = 1;
       } else {
@@ -62,7 +62,7 @@ export default {
       if (vl === 0) {
         return "~";
       } else if (vl === 1) {
-        if ((id === 1 && this.$store.getters.getPlayerState === "PLAYER_TWO") || (id === 2 && this.$store.getters.getPlayerState === "PLAYER_ONE")) {
+        if ((id === 1 && this.$store.getters.getPlayerID === "player2") || (id === 2 && this.$store.getters.getPlayerID === "player1")) {
           return "~";
         } else {
           return "x";

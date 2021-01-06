@@ -107,6 +107,9 @@ export default new Vuex.Store({
     },
     getPlayerState(state) {
       return state.gameValues.playerState;
+    },
+    getPlayerID(state){
+      return state.playerid;
     }
   },
   modules: {}
