@@ -52,7 +52,7 @@ export default {
       let vl;
       let id;
 
-      if (this.playerName === "player1") {
+      if (this.$store.state.playerid === "player1") {
         vl = this.$store.getters.getGrid1[Number(value)];
         id = 1;
       } else {

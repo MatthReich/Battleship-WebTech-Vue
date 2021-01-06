@@ -30,7 +30,6 @@ sct.onerror = function(error) {
 sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
-  console.log(object)
   if (object.event === "send-id"){
     console.log("id: "+ object.object);
     this.$store.state.playerid = object.object
