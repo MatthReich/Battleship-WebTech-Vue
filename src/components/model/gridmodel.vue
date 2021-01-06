@@ -6,6 +6,7 @@
           block
           outlined
           tile
+          :color="setColor(getGrid((row - 1) + '' + (col - 1)))"
           :key="(row - 1).toString() + (col - 1).toString()"
           v-on:click="sendMessage(row - 1, col - 1)"
         >
@@ -32,9 +33,20 @@ export default {
     }
   },
   methods: {
-    fetchData: function() {
+    fetchData: function () {
       console.log("fetching data");
       this.$store.dispatch("fetchData");
+    },
+    setColor(value){
+      if (value === "~"){
+        return "blue"
+      }else if(value === "x"){
+        return "green"
+      }else if (value === "X"){
+        return "red"
+      }else {
+        return "lightblue"
+      }
     },
     getGrid(value) {
       if (this.playerName === "player1") {
@@ -48,7 +60,7 @@ export default {
             return "x";
           }
         } else if (vl === 2) {
-          return "x";
+          return "X";
         } else if (vl === 3) {
           return "0";
         }
@@ -69,7 +81,7 @@ export default {
         }
       }
     },
-    sendMessage: function(row, col) {
+    sendMessage: function (row, col) {
       if (this.$store.getters.getGameState === "IDLE") {
         console.log("sending message: " + row + " " + col);
         this.$store.commit("SENDING_MESSAGE", row + " " + col + " test test");
@@ -91,6 +103,6 @@ export default {
   },
   mounted() {
     this.fetchData();
-  }
-};
+  },
+}
 </script>
