@@ -69,7 +69,6 @@ export default {
     submit() {
       this.loading = true;
       this.dialog = false;
-      console.log(this.yourplayername);
       this.$store.commit("SENDING_MESSAGE", this.yourplayername);
     }
   }

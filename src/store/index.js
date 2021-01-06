@@ -2,6 +2,7 @@ import Vue from "vue";
 import Vuex from "vuex";
 import axios from "axios";
 import router from "@/router";
+import store from "../store/index.js";
 
 Vue.use(Vuex);
 
@@ -31,12 +32,12 @@ sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
   if (object.event === "send-id") {
-    this.$store.commit("SET_PLAYERID", object.object);
+    this.playerid = object.object
   } else if (object.event === "start-game") {
     console.log("Start Game");
     router.push('Game')
   } else {
-    this.$store.commit("SET_GAME_VALUES", object);
+    store.dispatch("fetchData");
   }
 };
 
