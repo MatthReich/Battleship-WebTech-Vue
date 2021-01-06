@@ -30,10 +30,9 @@ sct.onerror = function(error) {
 sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
-  if (object.event === "send-id"){
-    console.log("id: "+ object.object);
-    this.$store.state.playerid = object.object
-  } else if (object.event === "start-game"){
+  if (object.event === "send-id") {
+    this.$store.commit("SET_PLAYERID", object.object);
+  } else if (object.event === "start-game") {
     console.log("Start Game");
     router.push('Game')
   } else {
@@ -46,7 +45,7 @@ export default new Vuex.Store({
     loadingStatus: "notLoading",
     gameValues: game,
     websocket: sct,
-    playerid:""
+    playerid: ""
   },
   mutations: {
     SET_LOADING_STATUS(state, status) {
@@ -72,6 +71,10 @@ export default new Vuex.Store({
     SENDING_MESSAGE(state, message) {
       console.log("message received getter: " + message);
       this.state.websocket.send(message);
+    },
+    SET_PLAYERID(state, id) {
+      state.playerid = id;
+      console.log("set playerid to: " + id);
     }
   },
   actions: {
