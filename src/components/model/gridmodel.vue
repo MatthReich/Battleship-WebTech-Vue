@@ -54,7 +54,7 @@ export default {
         if (vl === 0) {
           return "~";
         } else if (vl === 1) {
-          if (vl === 3 /* check if it is allowed to show setted ships */) {
+          if (this.$store.getters.getPlayerState === "PLAYER_TWO") {
             return "~";
           } else {
             return "x";
@@ -69,7 +69,7 @@ export default {
         if (vl === 0) {
           return "~";
         } else if (vl === 1) {
-          if (vl === 3 /* check if it is allowed to show setted ships */) {
+          if (this.$store.getters.getPlayerState === "PLAYER_ONE") {
             return "~";
           } else {
             return "x";
