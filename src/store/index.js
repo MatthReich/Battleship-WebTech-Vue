@@ -32,7 +32,7 @@ sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
   if (object.event === "send-id") {
-    this.playerid = object.object
+    this.playerid = object.object;
   } else if (object.event === "start-game") {
     console.log("Start Game");
     router.push('Game')
@@ -70,8 +70,8 @@ export default new Vuex.Store({
       console.log("fetch successful");
     },
     SENDING_MESSAGE(state, message) {
-      console.log("message received getter: " + message);
       this.state.websocket.send(message);
+      console.log("send message: " + message);
     },
     SET_PLAYERID(state, id) {
       state.playerid = id;
@@ -112,7 +112,7 @@ export default new Vuex.Store({
     getPlayerState(state) {
       return state.gameValues.playerState;
     },
-    getPlayerID(state){
+    getPlayerID(state) {
       return state.playerid;
     }
   },
