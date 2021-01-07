@@ -2,17 +2,31 @@
   <div>
     <div v-if="getGameState() === shipSetting">
       <br />
-      <div v-if="getPlayerState() === p1">
-        <playername1 v-bind:player-name="player1" />
-        <gridmodel1 v-bind:player-name="player1" />
-        <shipsetting v-bind:player-name="player1" />
-        <br />
+      <div v-if="getPlayerID() === player1">
+        <div v-if="getPlayerState() === p1">
+          <playername1 v-bind:player-name="player1" />
+          <gridmodel1 v-bind:player-name="player1" />
+          <shipsetting v-bind:player-name="player1" />
+          <br />
+        </div>
+        <div v-else>
+          <br />
+          <h2 class="text-center">Waiting for other player to seting his/her ships</h2>
+          <br />
+        </div>
       </div>
-      <div v-else-if="getPlayerState() === p2">
-        <playername1 v-bind:player-name="player2" />
-        <gridmodel1 v-bind:player-name="player2" />
-        <shipsetting v-bind:player-name="player2" />
-        <br />
+      <div v-else-if="getPlayerID() === player2">
+        <div v-if="getPlayerState() === p2">
+          <playername1 v-bind:player-name="player2" />
+          <gridmodel1 v-bind:player-name="player2" />
+          <shipsetting v-bind:player-name="player2" />
+          <br />
+        </div>
+        <div v-else>
+          <br />
+          <h2 class="text-center">Waiting for other player to seting his/her ships</h2>
+          <br />
+        </div>
       </div>
     </div>
     <div v-else-if="getGameState() === idle">
@@ -78,7 +92,11 @@ export default {
       return this.$store.getters.getGameState;
     },
     getPlayerState() {
+      console.log("PlayerState: "+ this.$store.getters.getPlayerState + "   PlayerID: "+ this.$store.getters.getPlayerID)
       return this.$store.getters.getPlayerState;
+    },
+    getPlayerID(){
+      return this.$store.getters.getPlayerID;
     },
     fetchData: function() {
       this.$store.dispatch("fetchData");

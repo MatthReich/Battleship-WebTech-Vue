@@ -32,7 +32,8 @@ sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
   if (object.event === "send-id") {
-    this.playerid = object.object;
+    store.state.playerid = object.object;
+    console.log("Player ID: "+store.state.playerid)
   } else if (object.event === "start-game") {
     console.log("Start Game");
     router.push('Game')
