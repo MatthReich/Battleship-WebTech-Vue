@@ -2,12 +2,13 @@
   <v-main>
     <v-container class="mx-auto text-center">
       <h1>Battleship</h1>
+      <br />
       <v-img
         class="mx-auto"
         max-width="960"
         src="https://media.giphy.com/media/RKS1aUdDGFUKxRecSL/source.gif"
       />
-
+      <br />
       <v-dialog v-model="dialog" persistent max-width="480">
         <template v-slot:activator="{ on, attrs }">
           <v-btn class="my-4" color="light-blue" dark v-bind="attrs" v-on="on">
@@ -36,6 +37,7 @@
           </v-card-actions>
         </v-card>
       </v-dialog>
+      <br />
       <v-dialog v-model="loading" persistent max-width="480" hide-overlay>
         <v-card color="light-blue" dark>
           <v-card-text>
@@ -48,9 +50,10 @@
           </v-card-text>
         </v-card>
       </v-dialog>
-
+      <br />
       <h2>How to start</h2>
-      <p>start the game with typing <code>/setPlayer/"playername"</code></p>
+      <br />
+      <p>start the game by pressing play button</p>
     </v-container>
   </v-main>
 </template>

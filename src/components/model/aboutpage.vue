@@ -43,9 +43,11 @@
         Just press the field you think the opponent has placed a ship
       </p>
       <p><strong>Solved</strong><br />it's a secret ;)</p>
-      <p><strong>Saved</strong><br /><span class="span_command">/save</span></p>
       <p>
-        <strong>Loaded</strong><br /><span class="span_command">/load</span>
+        <strong>Saved</strong><br />press SAVE in the navbar
+      </p>
+      <p>
+        <strong>Loaded</strong><br />press LAOD in the navbar
       </p>
     </div>
     <hr />

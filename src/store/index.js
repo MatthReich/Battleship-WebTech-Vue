@@ -31,12 +31,13 @@ sct.onerror = function(error) {
 sct.onmessage = function(message) {
   const object = JSON.parse(message.data);
   console.log("Reseived Message");
+  console.log(object.event);
   if (object.event === "send-id") {
     store.state.playerid = object.object;
-    console.log("Player ID: "+store.state.playerid)
+    console.log("Player ID: " + store.state.playerid);
   } else if (object.event === "start-game") {
     console.log("Start Game");
-    router.push('Game')
+    router.push("Game");
   } else {
     store.dispatch("fetchData");
   }
