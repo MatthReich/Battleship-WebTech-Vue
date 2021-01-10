@@ -13,6 +13,20 @@ import navbar from "@/components/main/navbar";
 import myfooter from "@/components/main/footer";
 export default {
   name: "App",
-  components: { navbar, myfooter }
+  components: { navbar, myfooter },
+  created() {
+    if (this.$workbox) {
+      this.$workbox.addEventListener("waiting", () => {
+        this.showUpgradeUI = true;
+      });
+    }
+  },
+
+  methods: {
+    async accept() {
+      this.showUpgradeUI = false
+      await this.$workbox.messageSW({ type: "SKIP_WAITING" });
+    }
+  },
 };
 </script>
