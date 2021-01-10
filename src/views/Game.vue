@@ -11,7 +11,9 @@
         </div>
         <div v-else>
           <br />
-          <h2 class="text-center">Waiting for other player to seting his/her ships</h2>
+          <h2 class="text-center">
+            Waiting for other player to seting his/her ships
+          </h2>
           <br />
         </div>
       </div>
@@ -24,7 +26,9 @@
         </div>
         <div v-else>
           <br />
-          <h2 class="text-center">Waiting for other player to seting his/her ships</h2>
+          <h2 class="text-center">
+            Waiting for other player to seting his/her ships
+          </h2>
           <br />
         </div>
       </div>
@@ -92,10 +96,9 @@ export default {
       return this.$store.getters.getGameState;
     },
     getPlayerState() {
-      console.log("PlayerState: "+ this.$store.getters.getPlayerState + "   PlayerID: "+ this.$store.getters.getPlayerID)
       return this.$store.getters.getPlayerState;
     },
-    getPlayerID(){
+    getPlayerID() {
       return this.$store.getters.getPlayerID;
     },
     fetchData: function() {

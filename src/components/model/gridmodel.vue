@@ -51,7 +51,6 @@ export default {
     getGrid(value) {
       let vl;
       let id;
-      console.log(this.$store.getters.getPlayerID)
       if (this.playerName === "player1") {
         vl = this.$store.getters.getGrid1[Number(value)];
         id = 1;
@@ -95,6 +94,6 @@ export default {
   },
   mounted() {
     this.fetchData();
-  },
-}
+  }
+};
 </script>
